@@ -14,6 +14,8 @@ router.get('/', (req, res) => {
     })
 })
 
+
+
 router.post('/', (req, res) => {
     Projects.addProject(req.body)
     .then(project => {
@@ -78,6 +80,21 @@ router.post('/:id/tasks', (req, res) => {
         }
     }).catch(error => {
         res.status(500).json({message: "Failed to add task to this project"})
+    })
+})
+
+router.get('/:id', (req, res) => {
+    const {id} = req.params;
+
+    Projects.getProjectById(id)
+    .then(project => {
+        if(project.length){
+                res.status(200).json(project)
+        }else{
+            res.status(400).json({message: 'Could not find this project'})
+        }
+    }).catch(error => {
+        res.status(500).json({message: "Failed to loadproject"})
     })
 })
 

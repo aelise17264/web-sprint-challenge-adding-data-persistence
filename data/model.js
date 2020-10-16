@@ -28,10 +28,9 @@ function getProject(){
     return db('projects')
 }
 
-function getProjectById(){
+function getProjectById(id){
     return db('projects')
     .where({id})
-    .first()
 }
 
 function addTask(newTask){
