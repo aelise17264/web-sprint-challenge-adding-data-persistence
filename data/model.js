@@ -40,5 +40,9 @@ function addTask(newTask){
 
 function getTask(){
     return db('task')
+    // .select('p.id', 't.project_id', 't.task_desc', 't.notes', 't.completed')
+    // .from('task as t')
+    // .join('projects as p', 't.project_id', '=', 'p.id' )
+    // .where('project_id', id)
 }
 

@@ -46,7 +46,11 @@ router.get('/:id/tasks', (req, res) => {
     
     Projects.getTask(id)
     .then(task => {
+        if(task.length){
         res.status(200).json(task)
+    }else{
+        res.status(404).json({message: 'Can not find your tasks'})
+    }
     }).catch(error => {
         res.status(500).json({message: "Failed to load tasks"})
     })
@@ -77,4 +81,4 @@ router.post('/:id/tasks', (req, res) => {
     })
 })
 
-model.express = router
+module.exports = router
